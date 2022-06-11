@@ -17,22 +17,18 @@ public class GetCustomer {
 		
 		try {				
 			mySession.beginTransaction();
-			// To GET the customer_details target to DELETE.
-			CustomerDetails cusDet = mySession.get(CustomerDetails.class, 3);
+			// To GET the customer and customer.toString().
+			CustomerDetails cusDet = mySession.get(CustomerDetails.class, 1);
 			System.out.println(cusDet);			
-			System.out.println(cusDet.getCustomer());
-			
-			/*
-			 * if (c != null) { mySession.delete(c); mySession.getTransaction().commit();
-			 * System.out.println("Record Sucessfully DELETED in DB"); }else {
-			 * System.out.println(" WARNING --> Customer doesn't exists in data base"); }
-			 */
-			
-			mySession.close();
+			System.out.println(cusDet.getCustomer());			
 		}catch(Exception e){
 			e.printStackTrace();
-		}finally {			
-			myFactory.close();
+		}finally {
+			/*	Para evitar el 'Error Leak', hay que trasladar el comando
+			 * 	'mySession.close()' al bloque finally, antes de cerrar el objeto
+			 * 	SessionFactory myFactory.	*/
+			mySession.close();
+			myFactory.close();			
 		}
 	}
 

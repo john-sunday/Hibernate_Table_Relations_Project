@@ -15,30 +15,32 @@ public class CustomerDeleteCascade {
 				.buildSessionFactory();
 		Session mySession = myFactory.openSession();
 		
-		try {
-			//Customer customer = new Customer("Pepe","Ortin","Av.Republica");
-			//Customer customer = new Customer("Concha","Revo","Calle Vallecas");
-			//Customer customer = new Customer("Johnny","Good","Calle Florencia");
-			//Customer customer = new Customer("Alejandra","Matamoros","Av Albufera");
-			//Customer customer = new Customer("Maria","de la O","Calle Pasodoble");
-			
-			//customer.setCustomerDetails(new CustomerDetails("www.jose.r3p","987654321","Great Heart, Gold Heart"));
-						
+		try {						
 			mySession.beginTransaction();
-			// To GET the customer target to DELETE.
-			Customer c = mySession.get(Customer.class, 4);
-			if (c != null) {
-				mySession.delete(c);
-				mySession.getTransaction().commit();
-				System.out.println("Record Sucessfully DELETED in DB");
-			}else {
-				System.out.println(" WARNING --> Customer doesn't exists in data base");
-			}
-			
-			mySession.close();
+			// To GET the customer to DELETE.
+			CustomerDetails cusDet = mySession.get(CustomerDetails.class, 7);
+			//Customer c = mySession.get(Customer.class, 3);
+			System.out.println(cusDet);			
+			System.out.println(cusDet.getCustomer());
+			System.out.println("DELETING CASCADE Customer Details first and Customer second......");			
+			/**
+			 * Importante:
+			 * Lo he hecho igual que Juan, y no puedo eliminar con Session.delete(),
+			 * necesito usar el método Session.createQuery(Delete.....).executeUpdate();
+			 */
+			//mySession.delete(cusDet);			
+			mySession
+			.createQuery("DELETE FROM CustomerDetails cd where cd.id=7")
+			.executeUpdate();
+			mySession.getTransaction().commit();
+			System.out.println("Customer and Details DELETED");
 		}catch(Exception e){
 			e.printStackTrace();
-		}finally {			
+		}finally {
+			/*	Para evitar el 'Error Leak', hay que trasladar el comando
+			 * 	'mySession.close()' al bloque finally, antes de cerrar el objeto
+			 * 	SessionFactory myFactory.	*/
+			mySession.close();
 			myFactory.close();
 		}
 	}
