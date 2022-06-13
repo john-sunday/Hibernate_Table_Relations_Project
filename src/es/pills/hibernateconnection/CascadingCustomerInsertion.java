@@ -20,12 +20,12 @@ public class CascadingCustomerInsertion {
 				//Customer customer = new Customer("Pepe","Ortin","Av.Republica");
 				//Customer customer = new Customer("Concha","Revo","Calle Vallecas");
 				//Customer customer = new Customer("Johnny","Good","Calle Florencia");
-				Customer customer = new Customer("Alejandra","Matamoros","Av Albufera");
-				//Customer customer = new Customer("Maria","de la O","Calle Pasodoble");
+				//Customer customer = new Customer("Alejandra","Matamoros","Av Albufera");
+				Customer customer = new Customer("Maria","de la O","Calle Pasodoble");
 				//customer.setCustomerDetails(new CustomerDetails("www.jose.r3p","987654321","Great Heart, Gold Heart"));
 				//customer.setCustomerDetails(new CustomerDetails("www.concha.r3p","333333333","Our best customer"));
-				//customer.setCustomerDetails(new CustomerDetails("www.mary.r3p","123456789","She is our most valorated customer"));
-				customer.setCustomerDetails(new CustomerDetails("www.alex.r3p","2222222","comments"));
+				customer.setCustomerDetails(new CustomerDetails("www.mary.r3p","123456789","She is our most valorated customer"));
+				//customer.setCustomerDetails(new CustomerDetails("www.alex.r3p","2222222","comments"));
 				//customer.setCustomerDetails(new CustomerDetails("www.johnny.r3p","999999999","comments"));
 				
 				mySession.beginTransaction();

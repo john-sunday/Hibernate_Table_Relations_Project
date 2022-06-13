@@ -49,7 +49,13 @@ public class CustomerDetailsDeletion {
 			 *	-foreign key en tabla customer con ON DELETE CASCADE ON UPDATE NO ACTION
 			 * Para que no se puedan eliminar registros sólo de la tabla 'customer_details', 
 			 * y para que si se quiere eliminar algún registro, tenga que ser un registro en la 
-			 * tabla customer, y en cascada en la tabla hija, 'customer_details', el/los registros.   
+			 * tabla customer, y en cascada en la tabla hija, 'customer_details', el/los registros. 
+			 * 
+			 * FINÁLMENTE:
+			 * Vuelvemos a modificar la estructura de la base de datos para dejarla como estaba:
+			 * 	-volvemos a añadir la cascada en la anotación de la clase 'CustomerDetails' @OneToOne(cascade=CascadeType.ALL)
+			 * 	-eliminamos las tres tablas(customer,customer_details y customer_order)
+			 * 	-añadimos las tres tablas, pero con la FOREIGN KEY en customer con ON DELETE CASCADE.
 			 */
 			cusDet.getCustomer().setCustomerDetails(null); 
 			mySession.delete(cusDet);

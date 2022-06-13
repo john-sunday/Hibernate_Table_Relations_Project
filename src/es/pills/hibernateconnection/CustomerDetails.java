@@ -38,7 +38,7 @@ public class CustomerDetails {
 	
 	// One to One:
 	// Field name created in Customer class:
-	@OneToOne(mappedBy="customerDetails")
+	@OneToOne(cascade=CascadeType.ALL,mappedBy="customerDetails")
 	// Field Relation:
 	@JoinColumn(name="id")
 	private Customer customer;
