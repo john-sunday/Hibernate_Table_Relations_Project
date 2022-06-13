@@ -1,12 +1,9 @@
 package es.pills.hibernateconnection;
 
-import java.util.GregorianCalendar;
-import java.util.List;
-import java.util.Scanner;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 
 public class GetCustomerOrder {
 
@@ -27,21 +24,24 @@ public class GetCustomerOrder {
 			
 			mySession.beginTransaction();			
 			// We get the customer of the DB customer table.
-			Customer customer = mySession.get(Customer.class, 1);
+			//Customer customer = mySession.get(Customer.class, 1);
+			Query<Customer>query = mySession.createQuery("SELECT C FROM Customer C JOIN FETCH C.customerOrders WHERE C.id=:customerId",Customer.class);
+			query.setParameter("customerId", 1);			
+			Customer customer = query.getSingleResult();
+			
 			System.out.println(customer.toString());
+			//System.out.println(customer.getCustomerOrders());
+									
+			mySession.getTransaction().commit();
+			// This works with 'FetchType.EAGER':
+			mySession.close();
 			System.out.println(customer.getCustomerOrders());
 			
-			/*
-			 * List<CustomerOrder> orders = customer.getCustomerOrders(); for (CustomerOrder
-			 * cOrder:orders) { System.out.println(cOrder); }
-			 */
-						
-			mySession.getTransaction().commit();
-			System.out.println("Order/s Sucessfully INSERTED in DB");										
+			System.out.println("Order/s Sucessfully SHOWED from DB");										
 		}catch(Exception e){
 			e.printStackTrace();
 		}finally {
-			mySession.close();
+			//mySession.close();
 			myFactory.close();
 		}
 	}
