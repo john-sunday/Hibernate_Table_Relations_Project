@@ -47,7 +47,7 @@ public class Customer {
 	@JoinColumn(name="id")
 	private CustomerDetails customerDetails;
 	
-	@OneToMany(mappedBy="customer",cascade= {CascadeType.PERSIST,CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
+	@OneToMany(mappedBy="customer",cascade= {CascadeType.PERSIST,CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})	
 	private List<CustomerOrder> customerOrders;
 	
 	// Constructor default.

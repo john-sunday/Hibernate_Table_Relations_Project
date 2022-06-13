@@ -31,18 +31,16 @@ public class CascadingCustomerInsertion {
 				mySession.beginTransaction();
 				mySession.save(customer);			
 				mySession.getTransaction().commit();
-				System.out.println("Record Sucessfully INSERT in DB");
-				
+				System.out.println("Record Sucessfully INSERT in DB");				
 				/*
 				 * mySession.beginTransaction(); mySession.save(customer2);
 				 * mySession.getTransaction().commit();
 				 * System.out.println("Record Sucessfully INSERT in DB");
-				 */
-				
-				mySession.close();
+				 */							
 			}catch(Exception e){
 				e.printStackTrace();
-			}finally {			
+			}finally {
+				mySession.close();
 				myFactory.close();
 			}
 	}

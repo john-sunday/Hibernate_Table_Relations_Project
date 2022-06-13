@@ -1,6 +1,7 @@
 package es.pills.hibernateconnection;
 
-import java.sql.Date;
+
+import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -24,8 +25,13 @@ public class CustomerOrder {
 	private Date orderDate;
 	@Column(name="payment_method")
 	private String paymentMethod;
-	@Column(name="customer_id")
-	private int customerId;
+	
+	/* No se puede repetir la columna de la tabla mapeada
+	 * "customer_id"
+	 * De hecho, Juan no crea el campo de clase 'customerId'.
+	 * @Column(name="customer_id") 
+	 * private int customerId;
+	 */
 	
 	// Many por la clase donde estamos -> CustomerOrder.
 	@ManyToOne(cascade= {CascadeType.PERSIST,CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
@@ -37,14 +43,14 @@ public class CustomerOrder {
 	public CustomerOrder() {
 		super();
 	}
-	public CustomerOrder(Date orderDate) {
+	public CustomerOrder(java.util.Date date) {
 		super();
-		this.orderDate = orderDate;
+		this.orderDate = date;
 	}
-	public CustomerOrder(String paymentMethod, int customerId) {
+	public CustomerOrder(String paymentMethod, int id) {
 		super();
 		this.paymentMethod = paymentMethod;
-		this.customerId = customerId;
+		this.id = id;
 	}
 	// Getters and Setters.
 	public int getId() {
@@ -65,12 +71,6 @@ public class CustomerOrder {
 	public void setPaymentMethod(String paymentMethod) {
 		this.paymentMethod = paymentMethod;
 	}
-	public int getCustomerId() {
-		return customerId;
-	}
-	public void setCustomerId(int customerId) {
-		this.customerId = customerId;
-	}
 	public Customer getCustomer() {
 		return customer;
 	}
@@ -80,7 +80,7 @@ public class CustomerOrder {
 	@Override
 	public String toString() {
 		return "CustomerOrder [id=" + id + ", orderDate=" + orderDate + ", paymentMethod=" + paymentMethod
-				+ ", customerId=" + customerId + "]";
+				+ ", customerId=" +"]";
 	}
 	
 }
