@@ -93,6 +93,12 @@ public class Customer {
 	public void setCustomerDetails(CustomerDetails customerDetails) {
 		this.customerDetails = customerDetails;
 	}
+	public List<CustomerOrder> getCustomerOrders() {
+		return customerOrders;
+	}
+	public void setCustomerOrders(List<CustomerOrder> customerOrders) {
+		this.customerOrders = customerOrders;
+	}
 	@Override
 	public String toString() {
 		return "Customer [id=" + id + ", name=" + name + ", surname=" + surname + ", address=" + address + "]";

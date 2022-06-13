@@ -13,6 +13,7 @@ public class CascadingCustomerInsertion {
 					.configure("hibernate.cfg.xml")
 					.addAnnotatedClass(Customer.class)
 					.addAnnotatedClass(CustomerDetails.class)//--> Faltaba añadir la otra clase anotada.
+					.addAnnotatedClass(CustomerOrder.class)
 					.buildSessionFactory();
 			Session mySession = myFactory.openSession();
 			
@@ -31,7 +32,7 @@ public class CascadingCustomerInsertion {
 				mySession.beginTransaction();
 				mySession.save(customer);			
 				mySession.getTransaction().commit();
-				System.out.println("Record Sucessfully INSERT in DB");				
+				System.out.println("Customer and Customer Details Sucessfully INSERTED in DB");				
 				/*
 				 * mySession.beginTransaction(); mySession.save(customer2);
 				 * mySession.getTransaction().commit();

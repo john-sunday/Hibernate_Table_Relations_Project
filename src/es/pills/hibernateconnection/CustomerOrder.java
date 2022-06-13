@@ -2,6 +2,7 @@ package es.pills.hibernateconnection;
 
 
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -22,7 +23,7 @@ public class CustomerOrder {
 	@Column(name="id")
 	private int id;
 	@Column(name="order_date")
-	private Date orderDate;
+	private GregorianCalendar orderDate;
 	@Column(name="payment_method")
 	private String paymentMethod;
 	
@@ -43,7 +44,7 @@ public class CustomerOrder {
 	public CustomerOrder() {
 		super();
 	}
-	public CustomerOrder(java.util.Date date) {
+	public CustomerOrder(java.util.GregorianCalendar date) {
 		super();
 		this.orderDate = date;
 	}
@@ -59,10 +60,10 @@ public class CustomerOrder {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public Date getOrderDate() {
+	public GregorianCalendar getOrderDate() {
 		return orderDate;
 	}
-	public void setOrderDate(Date orderDate) {
+	public void setOrderDate(GregorianCalendar orderDate) {
 		this.orderDate = orderDate;
 	}
 	public String getPaymentMethod() {
@@ -79,8 +80,10 @@ public class CustomerOrder {
 	}
 	@Override
 	public String toString() {
-		return "CustomerOrder [id=" + id + ", orderDate=" + orderDate + ", paymentMethod=" + paymentMethod
-				+ ", customerId=" +"]";
+		return "Customer Order \n"
+				+ "[id=" + id + "\n"
+				+ "order date=" + orderDate + "\n" 
+				+ "payment method=" + paymentMethod +"]" + "\n";
 	}
 	
 }
